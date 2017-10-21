@@ -1,57 +1,65 @@
-<<<<<<< HEAD
-<!doctype html>
 <html class="no-js" lang="">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>IsAlthouseBestHouse</title>
+    <title>Hexway</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Place favicon.ico in the root directory -->
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
 
-</head>
 
-<body>
-    
-    
-    <div class="container">
-        <div class="centered">
-            <h1 class="header">IS ALTHOUSE BEST HOUSE?</h1>
-            <button onclick="yes()" id="question-btn">THE ANSWER</button>
-            <div id="yes">YES</div>
-            <a href="http://www.ivyzhou.me"></a>
-            
+
+    <script src="js/main.js"></script>
+
+    <head>
+        <meta charset="utf-8" />
+        <style type="text/css">
+            canvas {
+                border: 0;
+                display: block;
+                margin: 0 auto;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <canvas id="hexmap" width="1355" height="550"></canvas>
+        <div class="container">
+            <div id="settings" class="row">
+                <div class="col-sm-auto">
+                    <a onclick="start()" id="start-btn"></a>
+                </div>
+                <div class="col-sm-9">
+                    <div id="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <a onclick="clear()" id="clear-btn"></a>
+                </div>
+            </div>
         </div>
-    </div>
-    
-       <script src="js/main.js"></script>
 
+        <script src="js/hexagons.js"></script>
+        <script src="js/main.js"></script>
 
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <script>
-        window.ga = function() {
-            ga.q.push(arguments)
-        };
-        ga.q = [];
-        ga.l = +new Date;
-        ga('create', 'UA-XXXXX-Y', 'auto');
-        ga('send', 'pageview')
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            window.ga = function() {
+                ga.q.push(arguments)
+            };
+            ga.q = [];
+            ga.l = +new Date;
+            ga('create', 'UA-XXXXX-Y', 'auto');
+            ga('send', 'pageview')
 
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-</body>
-
-</html>
-=======
-<<<<<<< HEAD
-#This is our main file
-Please work
-=======
-#yo guys
->>>>>>> 1da8923819a9ccce55c796b08794968a60730095
->>>>>>> c927189caab731841c188b90d960c92e6d6214e4
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    </body>
