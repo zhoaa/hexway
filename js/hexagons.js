@@ -46,12 +46,9 @@
             drawBoard(ctx, boardWidth, boardHeight);
 
             // Check if the mouse's coords are on the board
-            if (hexX >= 0 && hexX < boardWidth) {
-                if (hexY >= 0 && hexY < boardHeight) {
+            
                     ctx.fillStyle = "#000000";
                     drawHexagon(ctx, screenX, screenY, true);
-                }
-            }
         });
     }
 
