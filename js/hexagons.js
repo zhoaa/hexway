@@ -250,10 +250,8 @@ function clearBoard() {
 
 
     for (var i = 0; i < 55; i++) {
-        life[i] = false;
-
         for (var j = 0; j < 27; j++) {
-            life[i] = false;
+            life[i][j] = false;
         }
     }
 
