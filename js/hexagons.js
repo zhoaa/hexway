@@ -204,6 +204,7 @@ for (var i = 0; i < 55; i++) {
                         life1[i][j] = false;
                     }
                 }
+<<<<<<< HEAD
             }
         }
         for (var i = 0; i < 53; i++) {
@@ -218,3 +219,169 @@ for (var i = 0; i < 55; i++) {
         ctx.fillStyle = "#000";
         drawBoard(ctx, boardWidth, boardHeight);
     }
+=======
+			}
+			
+			drawHexagon(ctx, screenX, screenY, true);
+		});
+	}
+})();
+
+function drawHexagon(canvasContext, x, y, fill) {
+		var fill = fill || false;
+
+		canvasContext.beginPath();
+		canvasContext.moveTo(x + hexRadius, y);
+		canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
+		canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
+		canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
+		canvasContext.lineTo(x, y + sideLength + hexHeight);
+		canvasContext.lineTo(x, y + hexHeight);
+		canvasContext.closePath();
+
+		if (fill) {
+			canvasContext.fill();
+		} else {
+			canvasContext.stroke();
+		}
+	}
+
+function drawBoard(canvasContext, width, height) {
+		var i, j;
+
+		for (i = 0; i < width; ++i) {
+			for (j = 0; j < height; ++j) {
+				drawHexagon(
+					ctx,
+					i * hexRectangleWidth + ((j % 2) * hexRadius),
+					j * (sideLength + hexHeight),
+					false
+				);
+			}
+		}
+	}
+
+function gamelogic() {
+    var life1 = new Array(55);
+for(var i=0;i<55;i++){
+    life1[i]=new Array(27);
+}
+  for(var i=0;i<53;i++){
+      for(var j=0;j<25;i++){
+          var count=0;
+          if(j==0&&i==0){
+              if(life[i+1][j]==true){
+                  count++;
+              }
+              if(life[i+1][j+1]==true){
+                  count++;
+              }
+              if(life[i][j+1]==true){
+                  count++;
+              }
+          }
+          else if(j==0){
+              if(life[i+1][j]==true){
+                  count++;
+              }
+              if(life[i-1][j]==true){
+                  count++;
+              }
+              if(life[i+1][j+1]==true){
+                  count++;
+              }
+              if(life[i][j+1]==true){
+                  count++;
+              }
+          }
+          else if(i==0){
+              if(life[i][j-1]==true){
+                  count++;
+              }
+              if(life[i+1][j]==true){
+                  count++;
+              }
+              if(life[i][j+1]==true){
+                  count++;
+              }
+          }
+          else{
+              if(j%2==0){
+                  if(life[i+1][j-1]==true){
+                  count++;
+              }
+              if(life[i][j-1]==true){
+                  count++;
+              }
+              if(life[i-1][j]==true){
+                  count++;
+              }
+                  if(life[i][j+1]==true){
+                  count++;
+              }
+              if(life[i+1][j+1]==true){
+                  count++;
+              }
+              if(life[i+1][j]==true){
+                  count++;
+              }
+              }
+              else{
+              if(life[i][j-1]==true){
+                  count++;
+              }
+              if(life[i-1][j-1]==true){
+                  count++;
+              }
+              if(life[i-1][j]==true){
+                  count++;
+              }
+              if(life[i-1][j+1]==true){
+                  count++;
+              }
+              if(life[i][j+1]==true){
+                  count++;
+              }
+              if(life[i+1][j]==true){
+                  count++;
+              }
+              }
+          }
+          if(count>=3&&count<=5){
+              if(j%2==1){
+                  ctx.fillStyle = "#000000";
+                  drawHexagon(ctx,i*hexRectangleWidth-hexRadius,j*(hexHeight+sideLength),true);
+                  life1[i][j]=true;
+              }
+              else{
+                ctx.fillStyle = "#000000";
+                  drawHexagon(ctx,i*hexRectangleWidth,j*(hexHeight+sideLength),true);
+                  life1[i][j]=true;  
+              }
+          }
+          else{
+              if(j%2==1){
+                  ctx.fillStyle = "#fff";
+                  drawHexagon(ctx,i*hexRectangleWidth-hexRadius,j*(hexHeight+sideLength),true);
+                  life1[i][j]=false;
+              }
+              else{
+                ctx.fillStyle = "#fff";
+                  drawHexagon(ctx,i*hexRectangleWidth,j*(hexHeight+sideLength),true);
+                  life1[i][j]=false;  
+              }
+          }
+      }
+  }
+  for(var i=0;i<53;i++){
+      for(var j=0;j<25;i++){
+          life[i][j]=life1[i][j];
+      }
+  }
+}
+function clearBoard() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle = "#000";
+	drawBoard(ctx, boardWidth, boardHeight);
+}
+>>>>>>> 9961652ec02825e560747793a84707fe4f419d00
