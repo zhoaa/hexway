@@ -1,4 +1,7 @@
 var life = new Array(55);
+var slider = document.getElementById("myRange");
+
+
 for (var i = 0; i < 55; i++) {
     life[i] = new Array(257);
 }
@@ -212,6 +215,9 @@ function gamelogic() {
             life[i][j] = life1[i][j];
         }
     }
+
+    setTimeout(gamelogic(), 11 - slider);
+
 }
 
 function clearBoard() {
