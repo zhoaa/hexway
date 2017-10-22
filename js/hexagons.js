@@ -1,3 +1,5 @@
+
+
 var canvas = document.getElementById('hexmap');
 var ctx = canvas.getContext('2d');
 var hexHeight,
@@ -87,7 +89,10 @@ function drawBoard(canvasContext, width, height) {
 		}
 	}
 
-
+function gamelogic() {
+    
+    
+}
 function clearBoard() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.fillStyle = "#000";
