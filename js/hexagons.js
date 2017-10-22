@@ -1,19 +1,18 @@
 var life = new Array(55);
 var slider = document.getElementById("myRange");
-
+var isPlay = true;
 for (var i = 0; i < 55; i++) {
     life[i] = new Array(27);
 }
 var canvas = document.getElementById('hexmap');
 var ctx = canvas.getContext('2d');
-var hexHeight,
-    hexRadius,
-    hexRectangleHeight,
-    hexRectangleWidth,
-    hexagonAngle = 0.523598776, // 30 degrees in radians
-    sideLength = 15,
-    boardWidth = 400,
-    boardHeight = 400;
+var hexHeight=7.5,
+   hexRadius=Math.sqrt(3)*(15/2),
+   hexRectangleHeight=30,
+   hexRectangleWidth=2*hexRadius,
+   sideLength = 15,
+   boardWidth = 55,
+   boardHeight = 27;
 
 var board = [];
 var check = false;
@@ -63,10 +62,6 @@ function rainbow() {
 
 
 (function () {
-    hexHeight = Math.sin(hexagonAngle) * sideLength;
-    hexRadius = Math.cos(hexagonAngle) * sideLength;
-    hexRectangleHeight = sideLength + 2 * hexHeight;
-    hexRectangleWidth = 2 * hexRadius;
 
     if (canvas.getContext) {
         ctx.fillStyle = "#000000";
@@ -92,62 +87,101 @@ function rainbow() {
 
             screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
             screenY = hexY * (hexHeight + sideLength);
+//            screenY=Math.floor(y/(hexHeight+sideLength))*(hexHeight+sideLength);
+//            if(screenY/(hexHeight+sideLength)%2==0){
+//                screenX=Math.floor(x/hexRectangleWidth)*hexRectangleWidth; 
+//            }
+//            else{
+//                if(x/hexRectangleWidth-Math.floor(x/hexRectangleWidth)>0.5){
+//                screenX=Math.ceil(x/hexRectangleWidth)*hexRectangleWidth-hexRadius;
+//                }
+//                else{
+//                    screenX=Math.floor(x/hexRectangleWidth)*hexRectangleWidth-hexRadius;
+//                }
+//               
+//            }
 
-            if (ctx.fillStyle == "#000000") {
-                ctx.fillStyle = "#fff";
+            if(screenY/(hexHeight+sideLength)%2==0){
+                if (life[(screenX) / hexRectangleWidth][screenY/(hexHeight+sideLength)]) {
+                ctx.fillStyle = "#FFFFFF";
+                 drawHexagon(ctx, screenX, screenY, true);
+                 drawHexagon(ctx, screenX, screenY, false);
                 if (screenY / (hexHeight + sideLength) % 2 != 0) {
                     life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
                 } else {
                     life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
                 }
             } else {
-                ctx.fillStyle = "#000000";
+                ctx.fillStyle="#000000"
+                 drawHexagon(ctx, screenX, screenY, true);
                 if (screenY / (hexHeight + sideLength) % 2 != 0) {
-                    var x = parseInt((screenX + hexRadius) / hexRectangleWidth);
-                    var y = parseInt(screenY / (hexHeight + sideLength));
-                    life[x][y] = true;
+  var x=Math.floor((screenX + hexRadius) / hexRectangleWidth);
+                   var y=Math.floor(screenY / (hexHeight + sideLength));
+                  life[x][y] = true;
                 } else {
                     life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
                 }
             }
+            }
+            else{
+            if (life[(screenX + hexRadius) / hexRectangleWidth][screenY/(hexHeight+sideLength)]) {
+                ctx.fillStyle = "#FFFFFF";
+                 drawHexagon(ctx, screenX, screenY, true);
+                 drawHexagon(ctx, screenX, screenY, false);
+                if (screenY / (hexHeight + sideLength) % 2 != 0) {
+                    life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
+                } else {
+                    life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
+                }
+            } else {
+                ctx.fillStyle=getRandomColor();
+                 drawHexagon(ctx, screenX, screenY, true);
+                if (screenY / (hexHeight + sideLength) % 2 != 0) {
+  var x=Math.floor((screenX + hexRadius) / hexRectangleWidth);
+                   var y=Math.floor(screenY / (hexHeight + sideLength));
+                  life[x][y] = true;
+                } else {
+                    life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
+                }
+            }
+            }
 
-            drawHexagon(ctx, screenX, screenY, true);
+           
         });
     }
 })();
-
 function drawHexagon(canvasContext, x, y, fill) {
-    var fill = fill || false;
+   var fill = fill || false;
 
-    canvasContext.beginPath();
-    canvasContext.moveTo(x + hexRadius, y);
-    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
-    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
-    canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
-    canvasContext.lineTo(x, y + sideLength + hexHeight);
-    canvasContext.lineTo(x, y + hexHeight);
-    canvasContext.closePath();
+   canvasContext.beginPath();
+   canvasContext.moveTo(x + hexRadius, y);
+   canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
+   canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
+   canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
+   canvasContext.lineTo(x, y + sideLength + hexHeight);
+   canvasContext.lineTo(x, y + hexHeight);
+   canvasContext.closePath();
 
-    if (fill) {
-        canvasContext.fill();
-    } else {
-        canvasContext.stroke();
-    }
+   if (fill) {
+       canvasContext.fill();
+   } else {
+       canvasContext.stroke();
+   }
 }
 
 function drawBoard(canvasContext, width, height) {
-    var i, j;
+var i, j;
 
-    for (i = 0; i < width; ++i) {
-        for (j = 0; j < height; ++j) {
-            drawHexagon(
-                ctx,
-                i * hexRectangleWidth + ((j % 2) * hexRadius),
-                j * (sideLength + hexHeight),
-                false
-            );
-        }
-    }
+for (i = 0; i < width; i++) {
+for (j = 0; j < height; j++) {
+if(j%2!=0){
+drawHexagon(canvasContext, i * hexRectangleWidth - hexRadius, j * (hexHeight + sideLength), false);
+}
+else{
+drawHexagon(canvasContext, i * hexRectangleWidth, j * (hexHeight + sideLength), false);
+}
+}
+}
 }
 
 function gamelogic() {
@@ -183,32 +217,33 @@ function gamelogic() {
                     count++;
                 }
             } else if (i == 0) {
-                if (j % 2 == 0) {
-                    if (life[i][j - 1] == true) {
-                        count++;
-                    }
-                    if (life[i][j + 1] == true) {
-                        count++;
-                    }
-                    if (life[i + 1][j - 1] == true) {
-                        count++;
-                    }
-                    if (life[i + 1][j] == true) {
-                        count++;
-                    }
-                    if (life[i + 1][j] == true) {
-                        count++;
-                    }
-                } else {
-                    if (life[i][j - 1] == true) {
-                        count++;
-                    }
-                    if (life[i + 1][j] == true) {
-                        count++;
-                    }
-                    if (life[i][j + 1] == true) {
-                        count++;
-                    }
+                if(j%2==0){
+                   if (life[i][j - 1] == true) {
+                    count++;
+                }
+                if (life[i][j+1] == true) {
+                    count++;
+                }
+                if (life[i+1][j - 1] == true) {
+                    count++;
+                }
+                    if (life[i+1][j] == true) {
+                    count++;
+                }
+                if (life[i + 1][j] == true) {
+                    count++;
+                }
+                }
+                else{
+                if (life[i][j - 1] == true) {
+                    count++;
+                }
+                if (life[i + 1][j] == true) {
+                    count++;
+                }
+                if (life[i][j + 1] == true) {
+                    count++;
+                }
                 }
             } else {
                 if (j % 2 == 0) {
@@ -251,11 +286,9 @@ function gamelogic() {
                     }
                 }
             }
-            if (count >= 3 && count <= 5) {
+            if (count >= 1 && count <= 3) {
                 if (j % 2 != 0) {
-
                     ctx.fillStyle = rainbow();
-                    //alert(rainbow());
                     drawHexagon(ctx, i * hexRectangleWidth - hexRadius, j * (hexHeight + sideLength), true);
                     life1[i][j] = true;
                 } else {
@@ -302,30 +335,19 @@ function clearBoard() {
             life[i][j] = false;
         }
     }
-
-
-
 }
-
 function getRandomColor() {
-
-
-
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-
-    //alert(color);
-    return color;
-
-
+ var letters = '0123456789ABCDEF';
+ var color = '#';
+ for (var i = 0; i < 6; i++) {
+   color += letters[Math.floor(Math.random() * 16)];
+ }
+ return color;
 }
 
 
 
 
 function setRandomColor() {
-    $("#colorpad").css("background-color", getRandomColor());
+ $("#colorpad").css("background-color", getRandomColor());
 }
