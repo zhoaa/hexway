@@ -206,12 +206,12 @@ for(var i=0;i<55;i++){
               if(j%2==1){
                   ctx.fillStyle = "#fff";
                   drawHexagon(ctx,i*hexRectangleWidth-hexRadius,j*(hexHeight+sideLength),true);
-                  life1[i][j]=true;
+                  life1[i][j]=false;
               }
               else{
                 ctx.fillStyle = "#fff";
                   drawHexagon(ctx,i*hexRectangleWidth,j*(hexHeight+sideLength),true);
-                  life1[i][j]=true;  
+                  life1[i][j]=false;  
               }
           }
       }
