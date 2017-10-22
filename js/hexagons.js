@@ -105,45 +105,29 @@ function rainbow() {
                 if (life[(screenX) / hexRectangleWidth][screenY/(hexHeight+sideLength)]) {
                 ctx.fillStyle = "#FFFFFF";
                  drawHexagon(ctx, screenX, screenY, true);
-                 drawHexagon(ctx, screenX, screenY, false);
-                if (screenY / (hexHeight + sideLength) % 2 != 0) {
-                    life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
-                } else {
+                 drawHexagon(ctx, screenX, screenY, false); 
                     life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
-                }
             } else {
-                ctx.fillStyle="#000000"
-                 drawHexagon(ctx, screenX, screenY, true);
-                if (screenY / (hexHeight + sideLength) % 2 != 0) {
-  var x=Math.floor((screenX + hexRadius) / hexRectangleWidth);
-                   var y=Math.floor(screenY / (hexHeight + sideLength));
-                  life[x][y] = true;
-                } else {
+                ctx.fillStyle=getRandomColor();
+                 drawHexagon(ctx, screenX, screenY, true); 
                     life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
-                }
             }
             }
             else{
             if (life[(screenX + hexRadius) / hexRectangleWidth][screenY/(hexHeight+sideLength)]) {
                 ctx.fillStyle = "#FFFFFF";
                  drawHexagon(ctx, screenX, screenY, true);
-                 drawHexagon(ctx, screenX, screenY, false);
-                if (screenY / (hexHeight + sideLength) % 2 != 0) {
+//                 drawHexagon(ctx, screenX, screenY, false);
                     life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
-                } else {
-                    life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
-                }
+
             } else {
                 ctx.fillStyle=getRandomColor();
-                 drawHexagon(ctx, screenX, screenY, true);
-                if (screenY / (hexHeight + sideLength) % 2 != 0) {
-  var x=Math.floor((screenX + hexRadius) / hexRectangleWidth);
-                   var y=Math.floor(screenY / (hexHeight + sideLength));
+                                 drawHexagon(ctx, screenX, screenY, true);
+  var x=parseInt((screenX + hexRadius) / hexRectangleWidth);
+                   var y=parseInt(screenY / (hexHeight + sideLength));
                   life[x][y] = true;
-                } else {
-                    life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
-                }
             }
+
             }
 
            
