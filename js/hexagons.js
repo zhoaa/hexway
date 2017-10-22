@@ -113,7 +113,7 @@ function rainbow() {
                     life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
                 }
             } else {
-                if (life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)]) {
+                if (life[parseInt((screenX + hexRadius) / hexRectangleWidth)][parseInt(screenY / (hexHeight + sideLength))]) {
                     ctx.fillStyle = "#FFFFFF";
                     drawHexagon(ctx, screenX, screenY, true);
                     //                 drawHexagon(ctx, screenX, screenY, false);
