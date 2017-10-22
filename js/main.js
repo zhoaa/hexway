@@ -31,12 +31,12 @@ function start() {
     if (isPlay) {
 
         interval = setInterval(gamelogic, ((10 - slider.value) * 100));
-        startButton.style.backgroundImage = "url('../img/pause.png')";
+        startButton.style.backgroundImage = "url('img/pause.png')";
         isPlay = false;
 
     } else {
         clearInterval(interval);
-        startButton.style.backgroundImage = "url('../img/play.png')";
+        startButton.style.backgroundImage = "url('img/play.png')";
         isPlay = true;
 
     }
