@@ -1,7 +1,10 @@
 var life = new Array(55);
 var slider = document.getElementById("myRange");
+<<<<<<< HEAD
 var isPlay = true;
 
+=======
+>>>>>>> 693859cb9c4203e61688c3e283398c457db96a8b
 for (var i = 0; i < 55; i++) {
     life[i] = new Array(27);
 }
