@@ -16,6 +16,7 @@ function start() {
     if (isPlay) {
         startButton.style.backgroundImage = "url('../img/pause.png')";
         isPlay = false;
+        gamelogic();
     } else {
         startButton.style.backgroundImage = "url('../img/play.png')";
         isPlay = true;
