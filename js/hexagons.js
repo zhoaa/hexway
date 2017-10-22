@@ -110,18 +110,20 @@ function rainbow() {
                 } else {
                     ctx.fillStyle = rainbow();
                     drawHexagon(ctx, screenX, screenY, true);
+                    drawHexagon(ctx, screenX, screenY, false);
                     life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
                 }
             } else {
                 if (life[parseInt((screenX + hexRadius) / hexRectangleWidth)][parseInt(screenY / (hexHeight + sideLength))]) {
                     ctx.fillStyle = "#FFFFFF";
                     drawHexagon(ctx, screenX, screenY, true);
-                    //                 drawHexagon(ctx, screenX, screenY, false);
-                    life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
+                    drawHexagon(ctx, screenX, screenY, false);
+                    life[parseInt((screenX + hexRadius) / hexRectangleWidth)][parseInt(screenY / (hexHeight + sideLength))] = false;
 
                 } else {
                     ctx.fillStyle = rainbow();
                     drawHexagon(ctx, screenX, screenY, true);
+                    drawHexagon(ctx, screenX, screenY, false);
                     var x = parseInt((screenX + hexRadius) / hexRectangleWidth);
                     var y = parseInt(screenY / (hexHeight + sideLength));
                     life[x][y] = true;
