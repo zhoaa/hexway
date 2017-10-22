@@ -82,11 +82,7 @@ function rainbow() {
             x = eventInfo.offsetX || eventInfo.layerX;
             y = eventInfo.offsetY || eventInfo.layerY;
 
-//            hexY = Math.floor(y / (hexHeight + sideLength));
-//            hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
-//
-//            screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
-//            screenY = hexY * (hexHeight + sideLength);
+
                         screenY=Math.floor(y/(hexHeight+sideLength))*(hexHeight+sideLength);
                         if(screenY/(hexHeight+sideLength)%2==0){
                             screenX=Math.floor(x/hexRectangleWidth)*hexRectangleWidth; 
