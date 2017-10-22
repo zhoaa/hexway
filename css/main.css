@@ -97,3 +97,12 @@ canvas {
 	margin-bottom: 1em;
 	
 }
+
+#random-btn {
+    display: inline-block;
+	background-image: url("../img/pause.png");
+	height: 4em;
+	width: 4em;
+	margin-bottom: 1em;
+	
+}
