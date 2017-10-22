@@ -30,7 +30,7 @@ function start() {
     console.log(startButton.style.backgroundImage);
     if (isPlay) {
 
-        interval = setInterval(gamelogic, ((11 - slider.value) * 100));
+        interval = setInterval(gamelogic, ((10 - slider.value) * 100));
         startButton.style.backgroundImage = "url('../img/pause.png')";
         isPlay = false;
 
