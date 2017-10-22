@@ -87,3 +87,12 @@ canvas {
 	display: block;
 	margin: 0 auto;
 }
+
+#rainbow-btn {
+    display: inline-block;
+	background-image: url("../img/rainbow.png");
+	height: 4em;
+	width: 4em;
+	margin-bottom: 1em;
+	
+}
