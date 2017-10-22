@@ -324,7 +324,23 @@ function getRandomColor() {
     return color;
 }
 
-
+function randomize(){
+    clearBoard();
+    for(var i=0;i<53;i++){
+      for(var j=0;i<25;j++){
+        if(Math.random()*2>=1){
+            life[i][j]=true;
+            if (j % 2 != 0) {
+                    ctx.fillStyle = rainbow();
+                    drawHexagon(ctx, i * hexRectangleWidth - hexRadius, j * (hexHeight + sideLength), true);
+                } else {
+                    ctx.fillStyle = rainbow();
+                    drawHexagon(ctx, i * hexRectangleWidth, j * (hexHeight + sideLength), true);
+                }
+        }
+    }  
+    }
+}
 
 
 function setRandomColor() {
