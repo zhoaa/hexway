@@ -226,7 +226,7 @@ function gamelogic() {
                     }
                 }
             }
-            if (count >= 2 && count <= 3) {
+            if (count >= 2 && count <= 4) {
                 if (j % 2 != 0) {
                     ctx.fillStyle = getRandomColor();
                     drawHexagon(ctx, i * hexRectangleWidth - hexRadius, j * (hexHeight + sideLength), true);
