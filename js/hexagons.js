@@ -103,8 +103,6 @@ function drawBoard(canvasContext, width, height) {
 
 function gamelogic() {
 
-    alert("allen is right");
-
     var life1 = new Array(55);
     for (var i = 0; i < 55; i++) {
         life1[i] = new Array(27);
