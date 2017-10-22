@@ -80,7 +80,7 @@
 	height: 55px;
 	width: 4em;
 	margin-bottom: 1em;
-	transition: height 0.5s, width 0.5s, font-size 0.5s;
+    transition: height 0.5s, width 0.5s, font-size 0.5s;
 }
 
 canvas {
@@ -100,7 +100,7 @@ canvas {
 
 #random-btn {
     display: inline-block;
-	background-image: url("../img/pause.png");
+	background-image: url("../img/dice.png");
 	height: 4em;
 	width: 4em;
 	margin-bottom: 1em;
