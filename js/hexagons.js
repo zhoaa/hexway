@@ -83,19 +83,17 @@ function rainbow() {
             y = eventInfo.offsetY || eventInfo.layerY;
 
 
-                        screenY=Math.floor(y/(hexHeight+sideLength))*(hexHeight+sideLength);
-                        if(screenY/(hexHeight+sideLength)%2==0){
-                            screenX=Math.floor(x/hexRectangleWidth)*hexRectangleWidth; 
-                        }
-                        else{
-                            if(x/hexRectangleWidth-Math.floor(x/hexRectangleWidth)>0.5){
-                            screenX=Math.ceil(x/hexRectangleWidth)*hexRectangleWidth-hexRadius;
-                            }
-                            else{
-                                screenX=Math.floor(x/hexRectangleWidth)*hexRectangleWidth-hexRadius;
-                            }
-                           
-                        }
+            screenY = Math.floor(y / (hexHeight + sideLength)) * (hexHeight + sideLength);
+            if (screenY / (hexHeight + sideLength) % 2 == 0) {
+                screenX = Math.floor(x / hexRectangleWidth) * hexRectangleWidth;
+            } else {
+                if (x / hexRectangleWidth - Math.floor(x / hexRectangleWidth) > 0.5) {
+                    screenX = Math.ceil(x / hexRectangleWidth) * hexRectangleWidth - hexRadius;
+                } else {
+                    screenX = Math.floor(x / hexRectangleWidth) * hexRectangleWidth - hexRadius;
+                }
+
+            }
 
             if (screenY / (hexHeight + sideLength) % 2 == 0) {
                 if (life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)]) {
@@ -164,6 +162,10 @@ function drawBoard(canvasContext, width, height) {
 }
 
 function gamelogic() {
+
+    clearInterval(interval);
+    slideval = ((10 - slider.value) * 100);
+    interval = setInterval(gamelogic, slideval);
 
     var life1 = new Array(55);
     for (var i = 0; i < 55; i++) {
@@ -324,21 +326,21 @@ function getRandomColor() {
     return color;
 }
 
-function randomize(){
+function randomize() {
     clearBoard();
-    for(var i=0;i<48;i++){
-      for(var j=0;j<23;j++){
-        if(Math.random()*4<=1){
-            life[i][j]=true;
-            if (j % 2 != 0) {
+    for (var i = 0; i < 48; i++) {
+        for (var j = 0; j < 23; j++) {
+            if (Math.random() * 4 <= 1) {
+                life[i][j] = true;
+                if (j % 2 != 0) {
                     ctx.fillStyle = rainbow();
                     drawHexagon(ctx, i * hexRectangleWidth - hexRadius, j * (hexHeight + sideLength), true);
                 } else {
                     ctx.fillStyle = rainbow();
                     drawHexagon(ctx, i * hexRectangleWidth, j * (hexHeight + sideLength), true);
                 }
+            }
         }
-    }  
     }
 }
 
