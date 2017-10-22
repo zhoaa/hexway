@@ -82,27 +82,27 @@ function rainbow() {
             x = eventInfo.offsetX || eventInfo.layerX;
             y = eventInfo.offsetY || eventInfo.layerY;
 
-            hexY = Math.floor(y / (hexHeight + sideLength));
-            hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
-
-            screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
-            screenY = hexY * (hexHeight + sideLength);
-            //            screenY=Math.floor(y/(hexHeight+sideLength))*(hexHeight+sideLength);
-            //            if(screenY/(hexHeight+sideLength)%2==0){
-            //                screenX=Math.floor(x/hexRectangleWidth)*hexRectangleWidth; 
-            //            }
-            //            else{
-            //                if(x/hexRectangleWidth-Math.floor(x/hexRectangleWidth)>0.5){
-            //                screenX=Math.ceil(x/hexRectangleWidth)*hexRectangleWidth-hexRadius;
-            //                }
-            //                else{
-            //                    screenX=Math.floor(x/hexRectangleWidth)*hexRectangleWidth-hexRadius;
-            //                }
-            //               
-            //            }
+//            hexY = Math.floor(y / (hexHeight + sideLength));
+//            hexX = Math.floor((x - (hexY % 2) * hexRadius) / hexRectangleWidth);
+//
+//            screenX = hexX * hexRectangleWidth + ((hexY % 2) * hexRadius);
+//            screenY = hexY * (hexHeight + sideLength);
+                        screenY=Math.floor(y/(hexHeight+sideLength))*(hexHeight+sideLength);
+                        if(screenY/(hexHeight+sideLength)%2==0){
+                            screenX=Math.floor(x/hexRectangleWidth)*hexRectangleWidth; 
+                        }
+                        else{
+                            if(x/hexRectangleWidth-Math.floor(x/hexRectangleWidth)>0.5){
+                            screenX=Math.ceil(x/hexRectangleWidth)*hexRectangleWidth-hexRadius;
+                            }
+                            else{
+                                screenX=Math.floor(x/hexRectangleWidth)*hexRectangleWidth-hexRadius;
+                            }
+                           
+                        }
 
             if (screenY / (hexHeight + sideLength) % 2 == 0) {
-                if (life[(screenX) / hexRectangleWidth][screenY / (hexHeight + sideLength)]) {
+                if (life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)]) {
                     ctx.fillStyle = "#FFFFFF";
                     drawHexagon(ctx, screenX, screenY, true);
                     drawHexagon(ctx, screenX, screenY, false);
@@ -114,19 +114,17 @@ function rainbow() {
                     life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
                 }
             } else {
-                if (life[parseInt((screenX + hexRadius) / hexRectangleWidth)][parseInt(screenY / (hexHeight + sideLength))]) {
+                if (life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)]) {
                     ctx.fillStyle = "#FFFFFF";
                     drawHexagon(ctx, screenX, screenY, true);
                     drawHexagon(ctx, screenX, screenY, false);
-                    life[parseInt((screenX + hexRadius) / hexRectangleWidth)][parseInt(screenY / (hexHeight + sideLength))] = false;
+                    life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)] = false;
 
                 } else {
                     ctx.fillStyle = rainbow();
                     drawHexagon(ctx, screenX, screenY, true);
                     drawHexagon(ctx, screenX, screenY, false);
-                    var x = parseInt((screenX + hexRadius) / hexRectangleWidth);
-                    var y = parseInt(screenY / (hexHeight + sideLength));
-                    life[x][y] = true;
+                    life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
                 }
 
             }
@@ -295,8 +293,8 @@ function gamelogic() {
             }
         }
     }
-    for (var i = 0; i < 53; i++) {
-        for (var j = 0; j < 25; j++) {
+    for (var i = 0; i < 55; i++) {
+        for (var j = 0; j < 27; j++) {
             life[i][j] = life1[i][j];
         }
     }
