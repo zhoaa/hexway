@@ -1,3 +1,5 @@
+
+
 (function () {
     var canvas = document.getElementById('hexmap');
     var hexHeight,
@@ -43,12 +45,12 @@
 
             //ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            drawBoard(ctx, boardWidth, boardHeight);
+            
 
             // Check if the mouse's coords are on the board
             
-                    ctx.fillStyle = "#000000";
-                    drawHexagon(ctx, screenX, screenY, true);
+            ctx.fillStyle = "#000000";
+            drawHexagon(ctx, screenX, screenY, true);
         });
     }
 
