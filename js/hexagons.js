@@ -327,8 +327,8 @@ function getRandomColor() {
 function randomize(){
     clearBoard();
     for(var i=0;i<53;i++){
-      for(var j=0;i<25;j++){
-        if(Math.random()*2>=1){
+      for(var j=0;j<25;j++){
+        if(Math.random()*4<=1){
             life[i][j]=true;
             if (j % 2 != 0) {
                     ctx.fillStyle = rainbow();
