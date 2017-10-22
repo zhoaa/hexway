@@ -7,23 +7,43 @@
 //    output.innerHTML = this.value;
 //}
 
-
+var interval;
 var isPlay = true;
+
+//function start() {
+//    var startButton = document.getElementById("start-btn");
+//    console.log(startButton.style.backgroundImage);
+//    if (isPlay) {
+//                
+//        startButton.style.backgroundImage = "url('../img/pause.png')";
+//        isPlay = false;
+//    } else {
+//        startButton.style.backgroundImage = "url('../img/play.png')";
+//        isPlay = true;
+//    }
+//
+//}
+var slider = document.getElementById("myRange");
 
 function start() {
     var startButton = document.getElementById("start-btn");
     console.log(startButton.style.backgroundImage);
     if (isPlay) {
+
+        interval = setInterval(gamelogic, ((11 - slider.value) * 100));
         startButton.style.backgroundImage = "url('../img/pause.png')";
         isPlay = false;
-        gamelogic();
+
     } else {
+        clearInterval(interval);
         startButton.style.backgroundImage = "url('../img/play.png')";
         isPlay = true;
+
     }
 
 }
 
-function clear() {
 
-}
+//function clear() {
+//
+//}

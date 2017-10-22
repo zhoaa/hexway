@@ -1,9 +1,9 @@
 var life = new Array(55);
 var slider = document.getElementById("myRange");
-
+var isPlay = true;
 
 for (var i = 0; i < 55; i++) {
-    life[i] = new Array(257);
+    life[i] = new Array(27);
 }
 var canvas = document.getElementById('hexmap');
 var ctx = canvas.getContext('2d');
@@ -18,6 +18,25 @@ var hexHeight,
 
 var board = [];
 
+
+//function start() {
+//    var startButton = document.getElementById("start-btn");
+//    console.log(startButton.style.backgroundImage);
+//    if (isPlay) {
+//        alert("l");
+//        var interval = setInterval(gamelogic, 1000);
+//        startButton.style.backgroundImage = "url('../img/pause.png')";
+//        isPlay = false;
+//    } else {
+//        clearInterval(interval);
+//        startButton.style.backgroundImage = "url('../img/play.png')";
+//        isPlay = true;
+//
+//    }
+//
+//}
+
+
 (function () {
     hexHeight = Math.sin(hexagonAngle) * sideLength;
     hexRadius = Math.cos(hexagonAngle) * sideLength;
@@ -27,7 +46,7 @@ var board = [];
     if (canvas.getContext) {
         ctx.fillStyle = "#000000";
         ctx.strokeStyle = "#CCCCCC";
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 2;
 
         drawBoard(ctx, boardWidth, boardHeight);
         ctx.fillStyle = "#ffffff";
@@ -188,7 +207,7 @@ function gamelogic() {
                 }
             }
             if (count >= 3 && count <= 5) {
-                if (j % 2 == 1) {
+                if (j % 2 != 0) {
                     ctx.fillStyle = "#000000";
                     drawHexagon(ctx, i * hexRectangleWidth - hexRadius, j * (hexHeight + sideLength), true);
                     life1[i][j] = true;
@@ -198,30 +217,47 @@ function gamelogic() {
                     life1[i][j] = true;
                 }
             } else {
-                if (j % 2 == 1) {
-                    ctx.fillStyle = "#fff";
+                if (j % 2 != 0) {
+                    ctx.fillStyle = "#FFFFFF";
                     drawHexagon(ctx, i * hexRectangleWidth - hexRadius, j * (hexHeight + sideLength), true);
+                    drawHexagon(ctx, i * hexRectangleWidth - hexRadius, j * (hexHeight + sideLength), false);
                     life1[i][j] = false;
                 } else {
-                    ctx.fillStyle = "#fff";
+                    ctx.fillStyle = "#FFFFFF";
                     drawHexagon(ctx, i * hexRectangleWidth, j * (hexHeight + sideLength), true);
+                    drawHexagon(ctx, i * hexRectangleWidth, j * (hexHeight + sideLength), false);
                     life1[i][j] = false;
                 }
             }
         }
     }
     for (var i = 0; i < 53; i++) {
-        for (var j = 0; j < 25; i++) {
+        for (var j = 0; j < 25; j++) {
             life[i][j] = life1[i][j];
         }
     }
 
-    setTimeout(gamelogic(), 11 - slider);
 
 }
 
+
 function clearBoard() {
+
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#000";
     drawBoard(ctx, boardWidth, boardHeight);
+
+
+
+    for (var i = 0; i < 55; i++) {
+        life[i] = false;
+
+        for (var j = 0; j < 27; j++) {
+            life[i] = false;
+        }
+    }
+
+
+
 }
