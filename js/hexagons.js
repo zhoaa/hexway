@@ -77,7 +77,9 @@ var board = [];
             } else {
                 ctx.fillStyle = "#000000";
                 if (screenY / (hexHeight + sideLength) % 2 != 0) {
-                    life[(screenX + hexRadius) / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
+  var x=parseInt((screenX + hexRadius) / hexRectangleWidth);
+                   var y=parseInt(screenY / (hexHeight + sideLength));
+                  life[x][y] = true;
                 } else {
                     life[screenX / hexRectangleWidth][screenY / (hexHeight + sideLength)] = true;
                 }
@@ -155,6 +157,24 @@ function gamelogic() {
                     count++;
                 }
             } else if (i == 0) {
+                if(j%2==0){
+                   if (life[i][j - 1] == true) {
+                    count++;
+                }
+                if (life[i][j+1] == true) {
+                    count++;
+                }
+                if (life[i+1][j - 1] == true) {
+                    count++;
+                }
+                    if (life[i+1][j] == true) {
+                    count++;
+                }
+                if (life[i + 1][j] == true) {
+                    count++;
+                }
+                }
+                else{
                 if (life[i][j - 1] == true) {
                     count++;
                 }
@@ -163,6 +183,7 @@ function gamelogic() {
                 }
                 if (life[i][j + 1] == true) {
                     count++;
+                }
                 }
             } else {
                 if (j % 2 == 0) {
@@ -205,13 +226,13 @@ function gamelogic() {
                     }
                 }
             }
-            if (count >= 3 && count <= 5) {
+            if (count >= 2 && count <= 3) {
                 if (j % 2 != 0) {
-                    ctx.fillStyle = "#000000";
+                    ctx.fillStyle = getRandomColor();
                     drawHexagon(ctx, i * hexRectangleWidth - hexRadius, j * (hexHeight + sideLength), true);
                     life1[i][j] = true;
                 } else {
-                    ctx.fillStyle = "#000000";
+                    ctx.fillStyle = getRandomColor();
                     drawHexagon(ctx, i * hexRectangleWidth, j * (hexHeight + sideLength), true);
                     life1[i][j] = true;
                 }
@@ -257,4 +278,19 @@ function clearBoard() {
 
 
 
+}
+function getRandomColor() {
+ var letters = '0123456789ABCDEF';
+ var color = '#';
+ for (var i = 0; i < 6; i++) {
+   color += letters[Math.floor(Math.random() * 16)];
+ }
+ return color;
+}
+
+
+
+
+function setRandomColor() {
+ $("#colorpad").css("background-color", getRandomColor());
 }
