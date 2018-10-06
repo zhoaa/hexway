@@ -24,13 +24,13 @@ var isPlay = true;
 //
 //}
 var slider = document.getElementById("myRange");
-
+var sliderval;
 function start() {
     var startButton = document.getElementById("start-btn");
     console.log(startButton.style.backgroundImage);
     if (isPlay) {
-
-        interval = setInterval(gamelogic, ((10 - slider.value) * 100));
+        slideval = ((10 - slider.value) * 100);
+        interval = setInterval(gamelogic, slideval);
         startButton.style.backgroundImage = "url('img/pause.png')";
         isPlay = false;
 

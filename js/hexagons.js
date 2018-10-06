@@ -72,6 +72,7 @@ function rainbow() {
         ctx.fillStyle = "#ffffff";
 
         canvas.addEventListener("click", function (eventInfo) {
+
             var x,
                 y,
                 hexX,
