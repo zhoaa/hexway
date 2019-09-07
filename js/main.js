@@ -9,7 +9,7 @@
 
 var interval;
 var isPlay = true;
-
+//change
 //function start() {
 //    var startButton = document.getElementById("start-btn");
 //    console.log(startButton.style.backgroundImage);
@@ -25,6 +25,7 @@ var isPlay = true;
 //}
 var slider = document.getElementById("myRange");
 var sliderval;
+
 function start() {
     var startButton = document.getElementById("start-btn");
     console.log(startButton.style.backgroundImage);
